@@ -91,12 +91,13 @@ function CaseStudyContent() {
           <span>Pelago Health</span>
         </div>
 
-        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-100">
+        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-100 flex items-center justify-center">
           <Image
-            src="/images/wayfinder/hero.png"
+            src="/images/wayfinder/home-1.png"
             alt="Wayfinder final design"
-            fill
-            className="object-cover"
+            width={400}
+            height={800}
+            className="h-full w-auto object-contain"
             priority
           />
         </div>
@@ -351,6 +352,7 @@ function CaseStudyContent() {
         {/* Design Evolution Images */}
         <ImageCarousel
           images={[
+            { src: "/images/wayfinder/hero.png", alt: "Design process overview" },
             { src: "/images/wayfinder/process-2.png", alt: "Design iterations" },
             { src: "/images/wayfinder/process-3.png", alt: "Early wireframes" },
             { src: "/images/wayfinder/process-4.png", alt: "Phase 1 design" },
@@ -406,7 +408,6 @@ function CaseStudyContent() {
         {/* Final Designs */}
         <ImageCarousel
           images={[
-            { src: "/images/wayfinder/home-1.png", alt: "Final design - Check-in" },
             { src: "/images/wayfinder/home-4.png", alt: "Final design - Tasks" },
             { src: "/images/wayfinder/home-2.png", alt: "Final design - Home feed" },
             { src: "/images/wayfinder/home-3.png", alt: "Final design - Progress" },

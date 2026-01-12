@@ -28,19 +28,20 @@ export default function Home() {
         </h2>
 
         <Link href="/work/wayfinder" className="group block">
-          <div className="relative aspect-[16/9] mb-6 rounded-xl overflow-hidden bg-neutral-100">
+          <div className="relative aspect-[16/9] mb-6 rounded-xl overflow-hidden bg-neutral-100 flex items-center justify-center">
             <Image
-              src="/images/wayfinder/hero.png"
+              src="/images/wayfinder/home-1.png"
               alt="Wayfinder Project"
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              width={400}
+              height={800}
+              className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
             />
           </div>
           <h3 className="text-xl font-medium mb-2 group-hover:opacity-60 transition-opacity">
-            Wayfinder: Redesigning the Home Experience
+            Wayfinder: Redesigning the Home Tab
           </h3>
           <p className="text-muted">
-            A complete redesign of Pelago's home experience that increased Week 5 retention by 56%.
+            A complete redesign of Pelago's home tab that increased check-in completion by 58%.
           </p>
         </Link>
       </section>

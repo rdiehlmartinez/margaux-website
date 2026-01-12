@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 interface ImageCarouselProps {
@@ -15,6 +15,50 @@ export default function ImageCarousel({ images, caption }: ImageCarouselProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Track scroll position to update current index
+  const handleScroll = useCallback(() => {
+    if (!scrollRef.current) return;
+    
+    const container = scrollRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+    
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+    
+    itemRefs.current.forEach((item, index) => {
+      if (item) {
+        const itemRect = item.getBoundingClientRect();
+        const itemCenter = itemRect.left + itemRect.width / 2;
+        const distance = Math.abs(containerCenter - itemCenter);
+        
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      }
+    });
+    
+    setCurrentIndex(closestIndex);
+  }, []);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+      return () => container.removeEventListener("scroll", handleScroll);
+    }
+  }, [handleScroll]);
+
+  const scrollToIndex = (index: number) => {
+    itemRefs.current[index]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  };
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -47,6 +91,7 @@ export default function ImageCarousel({ images, caption }: ImageCarouselProps) {
           {images.map((image, index) => (
             <button
               key={index}
+              ref={(el) => { itemRefs.current[index] = el; }}
               onClick={() => openLightbox(index)}
               className="flex-shrink-0 snap-center cursor-zoom-in group"
             >
@@ -70,13 +115,7 @@ export default function ImageCarousel({ images, caption }: ImageCarouselProps) {
             {images.map((_, index) => (
               <button
                 key={index}
-                onClick={() => {
-                  scrollRef.current?.children[index]?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "nearest",
-                    inline: "center",
-                  });
-                }}
+                onClick={() => scrollToIndex(index)}
                 className={`w-1.5 h-1.5 rounded-full transition-colors ${
                   index === currentIndex ? "bg-foreground" : "bg-border"
                 }`}
@@ -174,4 +213,3 @@ export default function ImageCarousel({ images, caption }: ImageCarouselProps) {
     </>
   );
 }
-

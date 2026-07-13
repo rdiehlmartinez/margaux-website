@@ -56,7 +56,7 @@ export default function Home() {
           <div>
             <div className="flex justify-between items-baseline mb-1">
               <h3 className="font-medium">Senior Product Designer</h3>
-              <span className="text-sm text-muted">2023 —</span>
+              <span className="text-sm text-muted shrink-0 w-28 text-left">2023 —</span>
             </div>
             <p className="text-muted">Pelago Health</p>
           </div>
@@ -64,7 +64,7 @@ export default function Home() {
           <div>
             <div className="flex justify-between items-baseline mb-1">
               <h3 className="font-medium">Product Designer</h3>
-              <span className="text-sm text-muted">2021 — 2023</span>
+              <span className="text-sm text-muted shrink-0 w-28 text-left">2021 — 2023</span>
             </div>
             <p className="text-muted">Pelago Health</p>
           </div>
@@ -72,7 +72,7 @@ export default function Home() {
           <div>
             <div className="flex justify-between items-baseline mb-1">
               <h3 className="font-medium">Founding Designer</h3>
-              <span className="text-sm text-muted">2020 — 2021</span>
+              <span className="text-sm text-muted shrink-0 w-28 text-left">2020 — 2021</span>
             </div>
             <p className="text-muted">Madefor</p>
           </div>
@@ -88,7 +88,7 @@ export default function Home() {
         <div>
           <div className="flex justify-between items-baseline mb-1">
             <h3 className="font-medium">Stanford University</h3>
-            <span className="text-sm text-muted">2019</span>
+            <span className="text-sm text-muted shrink-0 w-28 text-left">2019</span>
           </div>
           <p className="text-muted">M.S. Science, Technology and Society</p>
         </div>
